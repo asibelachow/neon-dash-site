@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Dash - Official Game Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.24/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #16213e 100%);
+            min-height: 100vh;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff, 0 0 20px #00ffff;
+            color: #00ffff;
+        }
+        
+        .neon-text-pink {
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff, 0 0 20px #ff00ff;
+            color: #ff00ff;
+        }
+        
+        .neon-text-purple {
+            text-shadow: 0 0 5px #8a2be2, 0 0 10px #8a2be2, 0 0 15px #8a2be2, 0 0 20px #8a2be2;
+            color: #8a2be2;
+        }
+        
+        .neon-border {
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 10px #00ffff, inset 0 0 10px rgba(0, 255, 255, 0.1);
+        }
+        
+        .neon-border-pink {
+            border: 2px solid #ff00ff;
+            box-shadow: 0 0 10px #ff00ff, inset 0 0 10px rgba(255, 0, 255, 0.1);
+        }
+        
+        .neon-border-purple {
+            border: 2px solid #8a2be2;
+            box-shadow: 0 0 10px #8a2be2, inset 0 0 10px rgba(138, 43, 226, 0.1);
+        }
+        
+        .glow-btn {
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            border: none;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .glow-btn:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        .card-neon {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+        }
+        
+        .pulse-neon {
+            animation: pulse-neon 2s infinite;
+        }
+        
+        @keyframes pulse-neon {
+            0%, 100% { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff; }
+            50% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
+        }
+        
+        .privacy-content {
+            display: none;
+        }
+        
+        .privacy-content.active {
+            display: block;
+        }
+        
+        .main-content.hidden {
+            display: none;
+        }
+        
+        .leaderboard-row {
+            background: rgba(0, 255, 255, 0.05);
+            border-left: 3px solid #00ffff;
+        }
+        
+        .leaderboard-row:nth-child(even) {
+            background: rgba(255, 0, 255, 0.05);
+            border-left: 3px solid #ff00ff;
+        }
+        
+        .rank-badge {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            font-weight: bold;
+        }
+        
+        .rank-badge.silver {
+            background: linear-gradient(45deg, #c0c0c0, #e8e8e8);
+        }
+        
+        .rank-badge.bronze {
+            background: linear-gradient(45deg, #cd7f32, #daa520);
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Navigation -->
+    <nav class="navbar bg-black/90 backdrop-blur-sm fixed top-0 z-50 border-b border-cyan-500/30">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path>
+                    </svg>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black/90 rounded-box w-52 border border-cyan-500/30">
+                    <li><a href="#home" class="text-cyan-400 hover:text-cyan-300">Home</a></li>
+                    <li><a href="#features" class="text-cyan-400 hover:text-cyan-300">Features</a></li>
+                    <li><a href="#leaderboard" class="text-cyan-400 hover:text-cyan-300">Leaderboard</a></li>
+                    <li><a href="#testimonials" class="text-cyan-400 hover:text-cyan-300">Reviews</a></li>
+                    <li><a href="#contact" class="text-cyan-400 hover:text-cyan-300">Contact</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-ghost text-xl neon-text font-bold">NEON DASH</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="#home" class="text-cyan-400 hover:text-cyan-300">Home</a></li>
+                <li><a href="#features" class="text-cyan-400 hover:text-cyan-300">Features</a></li>
+                <li><a href="#leaderboard" class="text-cyan-400 hover:text-cyan-300">Leaderboard</a></li>
+                <li><a href="#testimonials" class="text-cyan-400 hover:text-cyan-300">Reviews</a></li>
+                <li><a href="#contact" class="text-cyan-400 hover:text-cyan-300">Contact</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <button onclick="showPrivacy()" class="btn btn-ghost text-cyan-400 hover:text-cyan-300">Privacy</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero min-h-screen gradient-bg pt-20">
+            <div class="hero-content text-center">
+                <div class="max-w-6xl">
+                    <h1 class="text-6xl md:text-8xl font-black neon-text pulse-neon mb-8">NEON DASH</h1>
+                    <p class="text-xl md:text-2xl mb-8 text-cyan-300">Experience the ultimate cyberpunk adventure</p>
+                    
+                    <!-- Gameplay Video -->
+                    <div class="mb-8 flex justify-center">
+                        <div class="neon-border rounded-lg p-4 bg-black/50">
+                            <video 
+                                controls 
+                                class="w-full max-w-2xl rounded-lg"
+                                poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23000'/%3E%3Ctext x='400' y='300' text-anchor='middle' fill='%2300ffff' font-size='24' font-family='monospace'%3ENeon Dash Gameplay%3C/text%3E%3C/svg%3E">
+                                <source src="https://static-us-img.skywork.ai/prod/analysis/2026-02-09/6395053062965634588/2020975414035525632_ee7a2f8894570c884bf222430faae47d.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="btn glow-btn text-black font-bold text-lg px-8 py-3">
+                            <i class="fas fa-download mr-2"></i>Download Now
+                        </button>
+                        <button class="btn btn-outline border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-black font-bold text-lg px-8 py-3">
+                            <i class="fas fa-play mr-2"></i>Watch Trailer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Features -->
+        <section id="features" class="py-20 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-4xl md:text-6xl font-bold text-center neon-text-pink mb-16">GAME FEATURES</h2>
+                
+                <!-- Game Description -->
+                <div class="card-neon rounded-lg p-8 mb-12">
+                    <h3 class="text-2xl font-bold neon-text mb-4">🎮 How to Play</h3>
+                    <p class="text-lg text-cyan-300 mb-4">
+                        <strong>TAP to fly</strong> through neon obstacles in this high-speed cyberpunk adventure! 
+                        Navigate your neon trail through increasingly challenging levels while collecting power-ups 
+                        and avoiding deadly barriers.
+                    </p>
+                    <p class="text-lg text-cyan-300">
+                        <strong>SURVIVE</strong> as long as possible and <strong>BEAT your high score</strong> in this 
+                        addictive arcade experience!
+                    </p>
+                </div>
+
+                <!-- Difficulty Levels -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div class="card-neon rounded-lg p-6 text-center">
+                        <div class="text-3xl mb-4">🟢</div>
+                        <h4 class="text-xl font-bold neon-text mb-2">EASY</h4>
+                        <p class="text-cyan-300">Perfect for beginners. Slower pace, wider gaps.</p>
+                    </div>
+                    <div class="card-neon rounded-lg p-6 text-center">
+                        <div class="text-3xl mb-4">🟡</div>
+                        <h4 class="text-xl font-bold neon-text-purple mb-2">MEDIUM</h4>
+                        <p class="text-cyan-300">Moderate challenge. Balanced gameplay.</p>
+                    </div>
+                    <div class="card-neon rounded-lg p-6 text-center">
+                        <div class="text-3xl mb-4">🔴</div>
+                        <h4 class="text-xl font-bold neon-text-pink mb-2">HARD</h4>
+                        <p class="text-cyan-300">Fast-paced action. Tight spaces.</p>
+                    </div>
+                    <div class="card-neon rounded-lg p-6 text-center">
+                        <div class="text-3xl mb-4">💀</div>
+                        <h4 class="text-xl font-bold text-red-400 mb-2">EXTREME</h4>
+                        <p class="text-cyan-300">Ultimate challenge. Lightning speed!</p>
+                    </div>
+                </div>
+
+                <!-- Power-ups -->
+                <div class="card-neon rounded-lg p-8 mb-12">
+                    <h3 class="text-2xl font-bold neon-text-pink mb-6">⚡ POWER-UPS</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">🛡️</div>
+                            <h4 class="text-lg font-bold neon-text mb-2">SHIELD</h4>
+                            <p class="text-cyan-300 text-sm">Protects you from one collision</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">⏰</div>
+                            <h4 class="text-lg font-bold neon-text mb-2">SLOW-MO</h4>
+                            <p class="text-cyan-300 text-sm">Slows down time for easier navigation</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">⚡</div>
+                            <h4 class="text-lg font-bold neon-text mb-2">2X SCORE</h4>
+                            <p class="text-cyan-300 text-sm">Doubles your points for limited time</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">🧲</div>
+                            <h4 class="text-lg font-bold neon-text mb-2">MAGNET</h4>
+                            <p class="text-cyan-300 text-sm">Attracts nearby power-ups automatically</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Music Feature -->
+                <div class="card-neon rounded-lg p-8">
+                    <h3 class="text-2xl font-bold neon-text mb-4">🎵 DYNAMIC SOUNDTRACK</h3>
+                    <p class="text-lg text-cyan-300 mb-4">
+                        Immerse yourself in an <strong>adaptive music experience</strong> that responds to your gameplay!
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-bold neon-text-purple mb-2">🎶 Speed-Responsive Music</h4>
+                            <p class="text-cyan-300">The background music tempo automatically adjusts based on your current difficulty level, creating an intense audio-visual experience.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold neon-text-purple mb-2">🔊 Immersive Audio</h4>
+                            <p class="text-cyan-300">High-quality cyberpunk soundtrack with dynamic sound effects that enhance every tap, collision, and power-up collection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leaderboard -->
+        <section id="leaderboard" class="py-20 px-4 gradient-bg">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-4xl md:text-6xl font-bold text-center neon-text mb-16">🏆 LEADERBOARD</h2>
+                
+                <div class="card-neon rounded-lg p-8">
+                    <div class="overflow-x-auto">
+                        <table class="table w-full">
+                            <thead>
+                                <tr class="border-b border-cyan-500/30">
+                                    <th class="text-cyan-400 text-lg">Rank</th>
+                                    <th class="text-cyan-400 text-lg">Player</th>
+                                    <th class="text-cyan-400 text-lg">Score</th>
+                                    <th class="text-cyan-400 text-lg">Level</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="leaderboard-row">
+                                    <td><span class="rank-badge px-3 py-1 rounded-full text-sm">1st</span></td>
+                                    <td class="text-cyan-300 font-bold">CyberNinja_X</td>
+                                    <td class="text-yellow-400 font-bold">15,847</td>
+                                    <td><span class="badge badge-error">EXTREME</span></td>
+                                </tr>
+                                <tr class="leaderboard-row">
+                                    <td><span class="rank-badge silver px-3 py-1 rounded-full text-sm">2nd</span></td>
+                                    <td class="text-cyan-300 font-bold">NeonMaster99</td>
+                                    <td class="text-yellow-400 font-bold">12,934</td>
+                                    <td><span class="badge badge-error">EXTREME</span></td>
+                                </tr>
+                                <tr class="leaderboard-row">
+                                    <td><span class="rank-badge bronze px-3 py-1 rounded-full text-sm">3rd</span></td>
+                                    <td class="text-cyan-300 font-bold">GlowRider</td>
+                                    <td class="text-yellow-400 font-bold">11,256</td>
+                                    <td><span class="badge badge-warning">HARD</span></td>
+                                </tr>
+                                <tr class="leaderboard-row">
+                                    <td><span class="px-3 py-1 rounded-full text-sm bg-gray-600">4th</span></td>
+                                    <td class="text-cyan-300">PixelDasher</td>
+                                    <td class="text-yellow-400">9,823</td>
+                                    <td><span class="badge badge-warning">HARD</span></td>
+                                </tr>
+                                <tr class="leaderboard-row">
+                                    <td><span class="px-3 py-1 rounded-full text-sm bg-gray-600">5th</span></td>
+                                    <td class="text-cyan-300">ElectricSoul</td>
+                                    <td class="text-yellow-400">8,567</td>
+                                    <td><span class="badge badge-warning">HARD</span></td>
+                                </tr>
+                                <tr class="leaderboard-row">
+                                    <td><span class="px-3 py-1 rounded-full text-sm bg-gray-600">6th</span></td>
+                                    <td class="text-cyan-300">NeonRunner</td>
+                                    <td class="text-yellow-400">7,445</td>
+                                    <td><span class="badge badge-info">MEDIUM</span></td>
+                                </tr>
+                                <tr class="leaderboard-row">
+                                    <td><span class="px-3 py-1 rounded-full text-sm bg-gray-600">7th</span></td>
+                                    <td class="text-cyan-300">CyberFlash</td>
+                                    <td class="text-yellow-400">6,892</td>
+                                    <td><span class="badge badge-info">MEDIUM</span></td>
+                                </tr>
+                                <tr class="leaderboard-row">
+                                    <td><span class="px-3 py-1 rounded-full text-sm bg-gray-600">8th</span></td>
+                                    <td class="text-cyan-300">GlitchHero</td>
+                                    <td class="text-yellow-400">5,734</td>
+                                    <td><span class="badge badge-info">MEDIUM</span></td>
+                                </tr>
+                                <tr class="leaderboard-row">
+                                    <td><span class="px-3 py-1 rounded-full text-sm bg-gray-600">9th</span></td>
+                                    <td class="text-cyan-300">DigitalDash</td>
+                                    <td class="text-yellow-400">4,521</td>
+                                    <td><span class="badge badge-success">EASY</span></td>
+                                </tr>
+                                <tr class="leaderboard-row">
+                                    <td><span class="px-3 py-1 rounded-full text-sm bg-gray-600">10th</span></td>
+                                    <td class="text-cyan-300">RetroGamer</td>
+                                    <td class="text-yellow-400">3,867</td>
+                                    <td><span class="badge badge-success">EASY</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-6">
+                        <p class="text-cyan-300">Think you can make it to the top? <span class="neon-text font-bold">Download now and compete!</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="py-20 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-4xl md:text-6xl font-bold text-center neon-text-purple mb-16">PLAYER REVIEWS</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-neon rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="rating rating-sm">
+                                <input type="radio" name="rating-1" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-1" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-1" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-1" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-1" class="mask mask-star-2 bg-yellow-400" checked />
+                            </div>
+                        </div>
+                        <p class="text-cyan-300 mb-4">"The music adaptation is incredible! The way the beat matches the intensity makes every run feel like a movie scene. Extreme mode is absolutely insane!"</p>
+                        <p class="text-cyan-400 font-bold">- CyberNinja_X</p>
+                    </div>
+                    
+                    <div class="card-neon rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="rating rating-sm">
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-yellow-400" checked />
+                            </div>
+                        </div>
+                        <p class="text-cyan-300 mb-4">"Best mobile game I've played this year! The power-ups are perfectly balanced and the leaderboard keeps me coming back. Love the neon aesthetic!"</p>
+                        <p class="text-cyan-400 font-bold">- NeonMaster99</p>
+                    </div>
+                    
+                    <div class="card-neon rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="rating rating-sm">
+                                <input type="radio" name="rating-3" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-3" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-3" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-3" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-3" class="mask mask-star-2 bg-yellow-400" />
+                            </div>
+                        </div>
+                        <p class="text-cyan-300 mb-4">"Simple controls but incredibly addictive gameplay. The four difficulty levels provide perfect progression. Can't stop trying to beat my high score!"</p>
+                        <p class="text-cyan-400 font-bold">- GlowRider</p>
+                    </div>
+                    
+                    <div class="card-neon rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="rating rating-sm">
+                                <input type="radio" name="rating-4" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-4" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-4" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-4" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-4" class="mask mask-star-2 bg-yellow-400" checked />
+                            </div>
+                        </div>
+                        <p class="text-cyan-300 mb-4">"The magnet power-up is a game changer! Love how the music speeds up in harder levels. Graphics are stunning on my phone!"</p>
+                        <p class="text-cyan-400 font-bold">- PixelDasher</p>
+                    </div>
+                    
+                    <div class="card-neon rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="rating rating-sm">
+                                <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" />
+                            </div>
+                        </div>
+                        <p class="text-cyan-300 mb-4">"Perfect for quick gaming sessions. The shield power-up has saved me so many times! Extreme mode is truly challenging."</p>
+                        <p class="text-cyan-400 font-bold">- ElectricSoul</p>
+                    </div>
+                    
+                    <div class="card-neon rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="rating rating-sm">
+                                <input type="radio" name="rating-6" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-6" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-6" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-6" class="mask mask-star-2 bg-yellow-400" checked />
+                                <input type="radio" name="rating-6" class="mask mask-star-2 bg-yellow-400" checked />
+                            </div>
+                        </div>
+                        <p class="text-cyan-300 mb-4">"Bela Apps nailed it with this one! The slow-mo power-up feels so satisfying. Great job on the soundtrack integration!"</p>
+                        <p class="text-cyan-400 font-bold">- NeonRunner</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 gradient-bg">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-4xl md:text-6xl font-bold text-center neon-text mb-16">CONTACT US</h2>
+                
+                <div class="card-neon rounded-lg p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold neon-text-pink mb-6">Get in Touch</h3>
+                            <p class="text-cyan-300 mb-4">
+                                Have feedback, suggestions, or need support? We'd love to hear from you!
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-envelope text-cyan-400 mr-3"></i>
+                                    <span class="text-cyan-300">bela.apps10@gmail.com</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-gamepad text-cyan-400 mr-3"></i>
+                                    <span class="text-cyan-300">Developed by Bela Apps</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-clock text-cyan-400 mr-3"></i>
+                                    <span class="text-cyan-300">Response within 24 hours</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <form class="space-y-4" action="mailto:bela.apps10@gmail.com" method="post" enctype="text/plain">
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text text-cyan-400">Name</span>
+                                </label>
+                                <input type="text" name="name" placeholder="Your name" class="input input-bordered bg-black/50 border-cyan-500 text-white focus:border-cyan-300" required />
+                            </div>
+                            
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text text-cyan-400">Email</span>
+                                </label>
+                                <input type="email" name="email" placeholder="your.email@example.com" class="input input-bordered bg-black/50 border-cyan-500 text-white focus:border-cyan-300" required />
+                            </div>
+                            
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text text-cyan-400">Subject</span>
+                                </label>
+                                <select name="subject" class="select select-bordered bg-black/50 border-cyan-500 text-white focus:border-cyan-300" required>
+                                    <option disabled selected>Choose a topic</option>
+                                    <option>Bug Report</option>
+                                    <option>Feature Request</option>
+                                    <option>General Feedback</option>
+                                    <option>Technical Support</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text text-cyan-400">Message</span>
+                                </label>
+                                <textarea name="message" class="textarea textarea-bordered h-24 bg-black/50 border-cyan-500 text-white focus:border-cyan-300" placeholder="Tell us what's on your mind..." required></textarea>
+                            </div>
+                            
+                            <div class="form-control mt-6">
+                                <button type="submit" class="btn glow-btn text-black font-bold">
+                                    <i class="fas fa-paper-plane mr-2"></i>Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Privacy Policy Content -->
+    <div id="privacy-content" class="privacy-content pt-20 px-4 min-h-screen">
+        <div class="container mx-auto max-w-4xl">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-4xl md:text-6xl font-bold neon-text">Privacy Policy</h1>
+                <button onclick="hidePrivacy()" class="btn btn-outline border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-black">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Game
+                </button>
+            </div>
+            
+            <div class="card-neon rounded-lg p-8 space-y-6">
+                <div>
+                    <p class="text-cyan-300 mb-4"><strong>Effective Date:</strong> January 13, 2026</p>
+                    <p class="text-cyan-300">Welcome to Neon Dash. Your privacy is important to us. This policy explains how we handle information and data security when you play our game.</p>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold neon-text-pink mb-4">1. Information We Collect and Share</h2>
+                    <p class="text-cyan-300 mb-4">Neon Dash does not require any account registration or personal login. However, we use Google AdMob and standard analytics to function. The following data is collected and shared with third-party service providers for advertising and performance monitoring:</p>
+                    <ul class="list-disc list-inside text-cyan-300 space-y-2 ml-4">
+                        <li><strong>Device Identifiers:</strong> We share your Android Advertising ID with AdMob to serve relevant advertisements.</li>
+                        <li><strong>Approximate Location:</strong> We use IP addresses to determine your general location (City/Country) to provide ads in the correct language.</li>
+                        <li><strong>App Activity:</strong> We track game interactions (like high scores and button clicks) to improve gameplay and monitor ad performance.</li>
+                        <li><strong>Performance Data:</strong> We collect Crash Logs and Diagnostics to identify bugs and ensure the game runs smoothly on all devices.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold neon-text-pink mb-4">2. Data Security and Encryption</h2>
+                    <p class="text-cyan-300">We take your data security seriously. All data collected and shared with third-party partners is encrypted in transit using secure protocols (HTTPS). This ensures that your technical identifiers remain protected while being processed.</p>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold neon-text-pink mb-4">3. Third-Party Advertising (AdMob)</h2>
+                    <p class="text-cyan-300 mb-4">This app uses Google AdMob. AdMob may use your information to personalize the ads you see. You can opt-out of personalized advertising at any time through your Android device's "Google Settings > Ads" menu.</p>
+                    <p class="text-cyan-300">For more details, see <a href="https://policies.google.com/privacy" target="_blank" class="neon-text hover:text-cyan-300">Google's Privacy & Terms</a>.</p>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold neon-text-pink mb-4">4. Local Storage</h2>
+                    <p class="text-cyan-300">Your game progress, such as your "Best Score" and "Mute Preferences," is stored directly on your device using Local Storage. This data is not transmitted to our servers and can be cleared by deleting the app's cache or uninstalling the game.</p>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold neon-text-pink mb-4">5. Children's Privacy</h2>
+                    <p class="text-cyan-300">Neon Dash is a general audience game. We do not knowingly collect personal data from children under the age of 13. If you believe we have inadvertently collected such data, please contact us immediately.</p>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold neon-text-pink mb-4">6. Contact Us</h2>
+                    <p class="text-cyan-300 mb-4">If you have questions regarding this Privacy Policy or your data, please reach out to us:</p>
+                    <p class="text-cyan-300"><strong>Email:</strong> bela.apps10@gmail.com</p>
+                </div>
+
+                <div class="border-t border-cyan-500/30 pt-6">
+                    <p class="text-center text-cyan-400">© 2026 Bela Apps. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer footer-center p-10 bg-black text-cyan-300 border-t border-cyan-500/30">
+        <div>
+            <div class="grid grid-flow-col gap-4">
+                <a class="link link-hover">About</a>
+                <a class="link link-hover">Support</a>
+                <a onclick="showPrivacy()" class="link link-hover cursor-pointer">Privacy Policy</a>
+                <a class="link link-hover">Terms of Service</a>
+            </div>
+        </div>
+        <div>
+            <p class="neon-text font-bold text-lg">NEON DASH</p>
+            <p>Developed with ❤️ by <span class="neon-text-pink font-bold">Bela Apps</span></p>
+            <p>© 2026 Bela Apps. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPrivacy() {
+            document.getElementById('main-content').classList.add('hidden');
+            document.getElementById('privacy-content').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function hidePrivacy() {
+            document.getElementById('privacy-content').classList.remove('active');
+            document.getElementById('main-content').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.card-neon');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 0 25px rgba(0, 255, 255, 0.5)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 0 15px rgba(0, 255, 255, 0.3)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
